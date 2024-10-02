@@ -342,9 +342,49 @@ class LUC_AVLTree {
      */
 
     private Node deleteElement(int value, Node node) {
+        // Step 1
+            if (node == null) {
+                return null; // Node not found
+            }
+            // Traverse the tree to find the node to be deleted
+            if (value < node.value) {
+                node.leftChild = deleteElement(value, node.leftChild);
+            } else if (value > node.value) {
+                node.rightChild = deleteElement(value, node.rightChild);
+            } else {
+                // Node to be deleted found
+                if (node.leftChild == null) {
+                    return node.rightChild; // Case 1: No left
+                } else if (node.rightChild == null) {
+                    return node.leftChild;  // Case 2: No right
+                }
+                // Get the in-order successor (smallest in the right subtree)
+                Node successor = minValueNode(node.rightChild);
+                node.value = successor.value; // Replace the value
+                node.rightChild = deleteElement(successor.value, node.rightChild); // Delete the successor
+            }
+            // Step 2: Update height of current node
+            node.height = getMaxHeight(getHeight(node.leftChild), getHeight(node.rightChild)) + 1;
+            // Step 3: Check the balance factor of the node
+            int balanceFactor = getBalanceFactor(node);
+            // Step 4: Perform rotations to rebalance the tree
 
+            if (balanceFactor > 1 && getBalanceFactor(node.leftChild) >= 0) {
+                return LLRotation(node);
+            }
+            if (balanceFactor > 1 && getBalanceFactor(node.leftChild) < 0) {
+                return LRRotation(node);
+            }
+            if (balanceFactor < -1 && getBalanceFactor(node.rightChild) <= 0) {
+                return RRRotation(node);
+            }
+            if (balanceFactor < -1 && getBalanceFactor(node.rightChild) > 0) {
+                return RLRotation(node);
+            }
+            // Return updated node pointer
+            return node;
+        }
         /*
-         * ADD CODE HERE
          * 
          * NOTE, that you should use the existing coded private methods
          * in this file, which include:
