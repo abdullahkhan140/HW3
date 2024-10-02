@@ -18,18 +18,18 @@ public class TreeProblems {
    * that are NOT in both sets. In other words, return a TreeSet of all the
    * elements that are in one set but not the other.
    */
-  
   public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
-Set<Integer> uniqueElements = new TreeSet<>(SetA);
-    
+    Set<Integer> uniqueElements = new TreeSet<>(setA); // create copy to store uniqueElements
+    uniqueElements.addAll(setB); // add all elements from setB to uniqueElements
+    Set<Integer>commonElements = new TreeSet<>(setA); // set holding commonElements
+    commonElements.retainAll(setB); // keep only common elements between setA and setB
+    uniqueElements.removeAll(commonElements); // remove all the same elements from uniqueElements
+return uniqueElements;
+
     // This can be done numerous ways, but once such will only that
     // *several* lines of code. Hint: create two temporary TreeSets and utilize the
     // methods retainAll(), addAll(), and removeAll(). But in the end, get something to work.
-
-    return setA;
   }
-
-
   /**
    * Method removeEven()
    *
@@ -38,24 +38,20 @@ Set<Integer> uniqueElements = new TreeSet<>(SetA);
    */
 
   public static void removeEven(Map<Integer, String> treeMap) {
-
-    treeMap.KeySet().removeIf(key -> key % 2 == 0);
+  for(Integer key : new TreeSet<>(treeMap.keySet())){ // using a TreeSet to maintain the sorted order of keys
+  if (key % 2 ==0){ // check if key is even
+    treeMap.remove(key); // remove key if even
   }
-
-
+    }
+  }
   /**
    * Method treesEqual()
    *
    * Given two treeMaps, each with the key as an integer, and the value as a String,
    * return a boolean value indicating if the two trees are equal or not.
    */
-
   public boolean treesEqual(Map<Integer, String> tree1,Map<Integer, String> tree2 ) {
-
-    return tree1.equals(tree2);
-
-    return false;
-
+    return tree1.equals(tree2); // checks if tree1 and tree2 are equal and if true return true
+    // and if false, return false
   }
-
 } // end treeProblems class
