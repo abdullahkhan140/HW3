@@ -39,7 +39,7 @@ return uniqueElements;
 
   public static void removeEven(Map<Integer, String> treeMap) {
   for(Integer key : new TreeSet<>(treeMap.keySet())){ // using a TreeSet to maintain the sorted order of keys
-  if (key % 2 ==0){ // check if key is even
+  if (key % 2 == 0){ // check if key is even
     treeMap.remove(key); // remove key if even
   }
     }
