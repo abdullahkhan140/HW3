@@ -369,16 +369,6 @@ class LUC_AVLTree {
 
             if (bf > 1 && getBalanceFactor(node.leftChild) >= 0) {
                 return LLRotation(node);
-            }
-            if (bf > 1 && getBalanceFactor(node.leftChild) < 0) {
-                return LRRotation(node);
-            }
-            if (bf < -1 && getBalanceFactor(node.rightChild) <= 0) {
-                return RRRotation(node);
-            }
-            if (bf < -1 && getBalanceFactor(node.rightChild) > 0) {
-                return RLRotation(node);
-            }
             // Return updated node pointer
             return node;
         }
