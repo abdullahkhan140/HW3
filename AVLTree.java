@@ -365,10 +365,6 @@ class LUC_AVLTree {
             node.height = getMaxHeight(getHeight(node.leftChild), getHeight(node.rightChild)) + 1; // calc and update height of current node
             // Step 3: Check the balance factor of the node
             int bf = getBalanceFactor(node);
-            // Step 4: Perform rotations to rebalance the tree
-
-            if (bf > 1 && getBalanceFactor(node.leftChild) >= 0) {
-                return LLRotation(node);
             // Return updated node pointer
             return node;
         }
