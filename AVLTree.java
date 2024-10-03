@@ -341,9 +341,8 @@ class LUC_AVLTree {
      *  @return node - new top of subtree, it possibly changed due to a rotation
      */
     private Node deleteElement(int value, Node node) {
-        // Step 1
             if (node == null) {
-                return null; // Node not found
+                return null;
             }
             // Traverse the tree to find the node to be deleted
             if (value < node.value) {
@@ -363,7 +362,7 @@ class LUC_AVLTree {
                 node.rightChild = deleteElement(successor.value, node.rightChild); // Delete the successor
             }
             // Step 2: Update height of current node
-            node.height = getMaxHeight(getHeight(node.leftChild), getHeight(node.rightChild)) + 1;
+            node.height = getMaxHeight(getHeight(node.leftChild), getHeight(node.rightChild)) + 1; // calc and update height of current node
             // Step 3: Check the balance factor of the node
             int bf = getBalanceFactor(node);
             // Step 4: Perform rotations to rebalance the tree
