@@ -19,12 +19,12 @@ public class TreeProblems {
    * elements that are in one set but not the other.
    */
   public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
-    Set<Integer> uniqueElements = new TreeSet<>(setA); // create copy to store uniqueElements
-    uniqueElements.addAll(setB); // add all elements from setB to uniqueElements
+    Set<Integer> allElements = new TreeSet<>(setA); // create copy to store uniqueElements
+    allElements.addAll(setB); // add all elements from setB to uniqueElements
     Set<Integer>commonElements = new TreeSet<>(setA); // set holding commonElements
     commonElements.retainAll(setB); // keep only common elements between setA and setB
-    uniqueElements.removeAll(commonElements); // remove all the same elements from uniqueElements
-return uniqueElements;
+    allElements.removeAll(commonElements); // remove all the same elements from uniqueElements
+return allElements;
 
     // This can be done numerous ways, but once such will only that
     // *several* lines of code. Hint: create two temporary TreeSets and utilize the
